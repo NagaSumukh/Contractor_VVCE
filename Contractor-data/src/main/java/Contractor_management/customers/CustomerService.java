@@ -15,25 +15,27 @@ public class CustomerService {
 	@Autowired
 	private CustomerRepository courseRepository;
 	
-	
-	public List<Customer> getAllCustomers(String topicId) {
-		//return topics;
-		List<Customer> courses = new ArrayList<>();
-		courseRepository.findByTopicId(topicId).forEach(courses::add);
-		return courses;
+	//This function will return List all cutsomers under that particular contractor
+	public List<Customer> getAllCustomers(String conid) {
+		//return customers;
+		List<Customer> customers = new ArrayList<>();
+		courseRepository.findByTopicId(conid).forEach(customers::add);
+		return customers;
 	}
 	
+	//This function is going to return particular customer by calling his ID
 	public Optional<Customer> getCustomer(String id) {
 		//return topics.stream().filter(t ->t.getId().equals(id)).findFirst().get();
 		return courseRepository.findById(id);
 	}
 	
+	//This function is going to add new customer for a particular contractor
 	public void addCustomer(Customer course) {
 		//topics.add(topic);
 		courseRepository.save(course);
 	}
 
-
+	
 	public void deleteCustomer(String id) {
 		courseRepository.deleteById(id);
 	}
